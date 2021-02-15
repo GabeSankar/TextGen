@@ -7,13 +7,22 @@ public class App{
 	public LinkedList<Vector<Double>> bufferhidden = new LinkedList<Vector<Double>>();
 	public LinkedList<Vector<Double>> bufferout = new LinkedList<Vector<Double>>();
 	public LinkedList<Vector<Double>> trainvec = new LinkedList<Vector<Double>>();
-	
+
 	public static void main(String[] args) {
 		
 	}
 	//write code for the sigmoid function
 	public Vector<Double> sigmoid(Vector<Double> x){
-		return x;
+		
+		Vector<Double> endvec = new Vector<Double>(x.size());
+
+		for(int m = 0; m < x.size(); m++){
+
+			endvec.add((1/( 1 + Math.pow(Math.E,(-1*x.get(m))))));
+
+		}
+
+		return endvec;
 	}
 	public Vector<Double> vectormaker(int size){
 
