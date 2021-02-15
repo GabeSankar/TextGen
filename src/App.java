@@ -1,14 +1,18 @@
 import java.util.*; 
 
+
+
 public class App{
 
 	public LinkedList<Vector<Double>> bufferhidden = new LinkedList<Vector<Double>>();
 	public LinkedList<Vector<Double>> bufferout = new LinkedList<Vector<Double>>();
+	public LinkedList<Vector<Double>> trainvec = new LinkedList<Vector<Double>>();
+	
 	public static void main(String[] args) {
 		
 	}
 	//write code for the sigmoid function
-	public double sigmoid(double x){
+	public Vector<Double> sigmoid(Vector<Double> x){
 		return x;
 	}
 	public Vector<Double> vectormaker(int size){
@@ -77,6 +81,14 @@ public class App{
 		}
 
 		return finalvec;
+
+	}
+	public Vector<Double> forwardpassequation(Vector<Double> hprev,Vector<Double> xin,
+											  Vector<Double> xwvec,Vector<Double> ywvec,Vector<Double> hwvec){
+
+		Vector<Double> h1notactivated = vectoraddition(vecmult(hwvec, hprev),vecmult(xwvec, xin));
+
+		return vecmult(ywvec, sigmoid(h1notactivated));
 
 	}
 
