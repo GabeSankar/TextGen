@@ -48,7 +48,7 @@ public class NeuralNetwork {
 			System.out.println("error vector size not equal");
 			System.exit(0);
 
-		}
+		} 
 
 		return funcvec;
 	}
