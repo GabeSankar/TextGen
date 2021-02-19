@@ -18,6 +18,28 @@ public class NeuralNetwork {
 
 		return endvec;
 	}
+	public double scalarsigmoid(double x){
+
+		return (1/( 1 + Math.pow(Math.E,(-1*x))));
+
+	}
+	public Vector<Double> tanh(Vector<Double> y){
+
+		Vector<Double> retvec = new Vector<Double>(y.size());
+		for(int g = 0; g < y.size(); g++){
+
+			retvec.set(g, Math.tanh(y.get(g)));
+
+		}
+
+		return retvec;
+
+	}
+	public double scalartanh(double y){
+
+		return Math.tanh(y);
+
+	}
     public Vector<Double> vectormaker(int size){
 
 		Vector<Double> vec = new Vector<Double>(size);
@@ -30,39 +52,6 @@ public class NeuralNetwork {
 		}
 		return vec;
 
-	}
-	public Vector<Double> vecmult(Vector<Double> vec1, Vector<Double> vec2){
-
-		Vector<Double> funcvec = new Vector<Double>(vec1.size());
-		
-		if(vec1.size() == vec2.size()){
-
-			for(int i = 0; i < vec1.size(); i++){
-				
-				funcvec.add(sumvec(vec1, vec2.get(i)));
-
-			}
-
-		}else{
-
-			System.out.println("error vector size not equal");
-			System.exit(0);
-
-		} 
-
-		return funcvec;
-	}
-	private double sumvec(Vector<Double> vectorinit,double currentElement){
-
-		double outputElement = 0;
-
-		for(int j = 0; j < vectorinit.size(); j++){
-
-			outputElement = outputElement + (currentElement * vectorinit.get(j));
-
-		}
-
-		return outputElement;
 	}
 	public Vector<Double> vectoraddition(Vector<Double> vector1, Vector<Double> vector2){
 
@@ -86,12 +75,25 @@ public class NeuralNetwork {
 		return finalvec;
 
 	}
+	public Vector<Double> scalarproduct(double scalar, Vector<Double> vect){
+
+		Vector<Double> returnvector = new Vector<Double>(vect.size());
+
+		for(int h = 0; h < vect.size(); h++){
+
+			returnvector.set(h,(vect.get(h) * scalar));
+
+		}
+
+		return returnvector;
+
+	}
 	public Vector<Double> forwardpassequation(Vector<Double> hprev,Vector<Double> xin,
 											  Vector<Double> xwvec,Vector<Double> ywvec,Vector<Double> hwvec){
 
-		Vector<Double> h1notactivated = vectoraddition(vecmult(hwvec, hprev),vecmult(xwvec, xin));
+		double h1notactivated = dotproduct(hwvec, hprev) + dotproduct(xwvec, xin);
 
-		return vecmult(ywvec, sigmoid(h1notactivated));
+		return scalarproduct(scalarsigmoid(h1notactivated),ywvec);
 
 	}
 	public double dotproduct(Vector<Double> vect1,Vector<Double> vect2){
