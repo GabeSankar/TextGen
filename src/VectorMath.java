@@ -113,4 +113,17 @@ public class VectorMath {
 		return finalvectordot;
 
 	}
+	public double scalarvectoscalar(Vector<Double> vect, double scalar){
+
+		double fvectordot = 0;
+
+			for(int d = 0; d < vect.size(); d++){
+
+			fvectordot = fvectordot + (vect.get(d)*scalar);
+
+			}
+
+		return fvectordot;
+
+	}
 }
