@@ -29,7 +29,14 @@ public class NeuralNetwork {
 
 	}
 	//Full process for the epoch during training
-	public void epoch(){
+	public void epoch(Vector<Double> hiddenweights,Vector<Double> outputweights,Vector<Double> inputweights,
+					  LinkedList<Double> hiddenbuffer,LinkedList<Vector<Double>> bufferoutput,
+					  LinkedList<Vector<Double>> trainingvectors, int GlobalItter, Vector<Double> input){
+
+		forwardpassequation(hiddenbuffer.get(GlobalItter - 1), input, inputweights, outputweights, 
+							hiddenweights,hiddenbuffer, bufferoutput, GlobalItter);
+
+		System.out.println(Loss(bufferoutput, GlobalItter, trainingvectors));
 
 		
 
