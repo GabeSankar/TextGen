@@ -45,7 +45,7 @@ public class Gradient {
         sigmoiderivative(h1notactivated)*partialDerivativeYSig(hlayeractivated)*partialLY(CorrectVec, index);
 
     }
-    public double finalpartialDerivativeYweight(Vector<Double> Correctvec,int index,double hlayerActive){
+    public double finalpartialDerivativeY(Vector<Double> Correctvec,int index,double hlayerActive){
 
         return partialLY(Correctvec, index)*partialDerivativeYSig(hlayerActive);
 
